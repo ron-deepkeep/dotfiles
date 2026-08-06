@@ -41,7 +41,7 @@ local function parse_from_import_line(line)
       else
         n = s:match '^([%w_]+)$'
         if n then
-          names[n] = nil
+          names[n] = false
         end
       end
     end

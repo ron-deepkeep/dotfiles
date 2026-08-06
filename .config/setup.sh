@@ -93,6 +93,9 @@ if [ "$PACKAGE_MANAGER" = "brew" ]; then
 elif [ "$PACKAGE_MANAGER" = "apt" ]; then
     sudo apt update
 
+    # Bootstrap: ensure curl and add-apt-repository are available
+    sudo apt install -y curl software-properties-common
+
     # Neovim unstable PPA
     sudo add-apt-repository ppa:neovim-ppa/unstable -y || true
     sudo apt update
@@ -184,18 +187,6 @@ elif [ "$PACKAGE_MANAGER" = "apt" ]; then
     fi
 fi
 
-# ── Clone TPM if not exists ──────────────────────────────────────────────────
-TPM_DIR="$HOME/.tmux/plugins/tpm"
-if [ ! -d "$TPM_DIR" ]; then
-    git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
-else
-    echo "TPM already cloned."
-fi
-
-# ── Install tmux plugins ────────────────────────────────────────────────────
-echo "Installing tmux plugins..."
-"$TPM_DIR/bin/install_plugins" || true
-
 # ── Clone dotfiles if not exists ─────────────────────────────────────────────
 DOTFILES_DIR="${XDG_CONFIG_HOME:-$HOME/dotfiles}"
 if [ ! -d "$DOTFILES_DIR/.git" ]; then
@@ -204,9 +195,21 @@ else
     echo "dotfiles repo already exists."
 fi
 
-# ── Stow configuration ──────────────────────────────────────────────────────
+# ── Stow configuration (must happen before TPM plugin install) ───────────────
 cd "$DOTFILES_DIR"
 stow .
+
+# ── Clone TPM if not exists ──────────────────────────────────────────────────
+TPM_DIR="$HOME/.config/tmux/plugins/tpm"
+if [ ! -d "$TPM_DIR" ]; then
+    git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+else
+    echo "TPM already cloned."
+fi
+
+# ── Install tmux plugins (after stow so tmux.conf is in place) ───────────────
+echo "Installing tmux plugins..."
+"$TPM_DIR/bin/install_plugins" || true
 
 # ── Set zsh as default shell ─────────────────────────────────────────────────
 if [ "$SHELL" != "$(which zsh)" ]; then
