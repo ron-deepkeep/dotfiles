@@ -1,0 +1,90 @@
+# tuicr config — ~/.config/tuicr/config.toml
+# Unknown keys are ignored with a startup warning, so typos are visible.
+# Full reference: docs/CONFIG.md in the repo.
+
+# ── Diff layout ───────────────────────────────────────────────────────────────
+# "side-by-side" = old and new next to each other
+# "unified"      = one column, old above new (the default)
+# Toggle at runtime with `:diff`.
+diff_view = "side-by-side"
+
+# Wrap long lines instead of truncating them. Useful in side-by-side, where
+# each column is only half the terminal width. Toggle with `:set wrap!`.
+# wrap = true
+
+
+# ── Appearance ────────────────────────────────────────────────────────────────
+# One bundled theme name, e.g. dark, light, onedark, github-dark, github-light,
+# gruvbox-dark, gruvbox-light, nord-dark, nord-light, solarized-dark,
+# solarized-light, ayu-light, ayu-mirage, everforest-dark, everforest-light,
+# tokyo-night-storm, tokyo-night-day, catppuccin-latte, catppuccin-frappe,
+# catppuccin-macchiato, catppuccin-mocha. Override per run with `--theme`.
+# theme = "catppuccin-mocha"
+
+# Or follow the OS: "system" (default), "dark", or "light", picking between
+# theme_dark and theme_light.
+# appearance = "system"
+# theme_dark = "catppuccin-mocha"
+# theme_light = "catppuccin-latte"
+
+# Let the terminal's own background show through instead of painting one.
+# transparent_background = true
+
+# Highlight the cursor's line.
+# cursor_line = true
+
+# Relative line numbers in the diff gutter, vim style.
+# relative_line_numbers = true
+
+
+# ── Layout / navigation ───────────────────────────────────────────────────────
+# Start with the file tree hidden. Toggle with <leader>e (leader defaults to ;).
+# show_file_list = false
+
+# Prefix key for leader shortcuts.
+# leader = ";"
+
+# Keep this many lines of context above/below the cursor when scrolling
+# (vim's scrolloff).
+# scroll_offset = 5
+
+# Show one file at a time rather than one continuous stream. Toggle with `:focus`.
+# single_file_view = true
+
+# Enable mouse support (on by default; set false if it fights your terminal's
+# own selection/copy behaviour).
+# mouse = false
+
+
+# ── Reviewing ─────────────────────────────────────────────────────────────────
+# Ignore whitespace-only changes in local VCS diffs.
+# ignore_whitespace = true
+
+# vim modal editing inside the comment box.
+# comment_vim = true
+
+# Commit selector ordering: "descending" (newest first, default) or "ascending".
+# commit_order = "descending"
+
+# Which commits start selected: "all" (default) or "oldest".
+# initial_commit_selection = "all"
+
+# Poll interval in ms for picking up comments added by `tuicr review add`.
+# Set 0 to disable.
+# review_watch_interval_ms = 1000
+
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+# Skip the crates.io version check on startup.
+# no_update_check = true
+
+# Git backend: "libgit2" (default) or "cli". Sparse checkouts auto-select "cli".
+# backend = "libgit2"
+
+
+# ── Custom comment types ──────────────────────────────────────────────────────
+# Replaces the built-in set (issue/suggestion/note/praise) when present.
+# [[comment_types]]
+# id = "issue"
+# color = "red"
+# definition = "must fix before merge"

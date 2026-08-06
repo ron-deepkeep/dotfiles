@@ -1,0 +1,246 @@
+# Rift config - migrated from AeroSpace
+# Workspace mapping:
+#   AeroSpace 1-9 -> Rift 0-8
+#   AeroSpace 0   -> Rift 9
+#   AeroSpace A-G -> Rift 10-16
+#   AeroSpace I   -> Rift 17
+#   AeroSpace M-Z -> Rift 18-31 (M=18, N=19, O=20, P=21, Q=22, R=23, S=24, T=25, U=26, V=27, W=28, X=29, Y=30, Z=31)
+
+[settings]
+animate = true
+animation_duration = 0.2
+animation_fps = 60.0
+
+# Mouse behavior (matches AeroSpace on-focused-monitor-changed = move-mouse)
+mouse_follows_focus = false
+focus_follows_mouse = false
+mouse_hides_on_focus = false
+
+hot_reload = true
+run_on_start = []
+auto_focus_blacklist = []
+
+[settings.layout]
+# AeroSpace default-root-container-layout = 'tiles' -> traditional
+mode = "traditional"
+
+[settings.layout.stack]
+# AeroSpace accordion-padding = 30
+stack_offset = 30.0
+default_orientation = "perpendicular"
+
+[settings.layout.gaps]
+# All gaps set to 0 (matching AeroSpace config)
+[settings.layout.gaps.outer]
+top = 0
+left = 0
+bottom = 0
+right = 0
+
+[settings.layout.gaps.inner]
+horizontal = 0
+vertical = 0
+
+[settings.layout.master_stack]
+master_ratio = 0.6
+master_count = 1
+master_side = "left"
+new_window_placement = "master"
+
+[settings.layout.scrolling]
+column_width_ratio = 0.7
+min_column_width_ratio = 0.3
+max_column_width_ratio = 0.9
+alignment = "center"
+focus_navigation_style = "niri"
+
+[settings.layout.scrolling.gestures]
+enabled = false
+
+# Menu bar workspace indicator
+[settings.ui.menu_bar]
+enabled = true
+show_empty = false
+mode = "active"
+active_label = "name"
+display_style = "label"
+
+[settings.ui.stack_line]
+enabled = false
+
+[settings.ui.mission_control]
+enabled = true
+fade_enabled = true
+fade_duration_ms = 180.0
+
+[settings.gestures]
+enabled = false
+
+[settings.window_snapping]
+drag_swap_fraction = 0.3
+
+[virtual_workspaces]
+enabled = true
+default_workspace_count = 32
+auto_assign_windows = true
+preserve_focus_per_workspace = true
+workspace_auto_back_and_forth = false
+reapply_app_rules_on_title_change = false
+
+workspace_names = [
+    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+    "A", "B", "C", "D", "E", "F", "G",
+    "I",
+    "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+]
+
+workspace_rules = [
+    { workspace = 5, layout = "scrolling" },
+    { workspace = 6, layout = "scrolling" },
+    { workspace = 7, layout = "scrolling" },
+    { workspace = 8, layout = "scrolling" },
+    { workspace = 9, layout = "scrolling" },
+]
+app_rules = []
+
+[modifier_combinations]
+comb1 = "Alt + Shift"
+
+[keys]
+# Toggle rift on/off (remapped from Alt+Z since Z is used for workspace)
+"Alt + Grave" = "toggle_space_activated"
+
+# Focus movement (alt-h/j/k/l)
+"Alt + H" = { move_focus = "left" }
+"Alt + J" = { move_focus = "down" }
+"Alt + K" = { move_focus = "up" }
+"Alt + L" = { move_focus = "right" }
+
+# Move windows (alt-shift-h/j/k/l)
+"comb1 + H" = { move_node = "left" }
+"comb1 + J" = { move_node = "down" }
+"comb1 + K" = { move_node = "up" }
+"comb1 + L" = { move_node = "right" }
+
+# Join window (was service mode alt-shift-h/j/k/l in AeroSpace)
+"Alt + Shift + Left" = { join_window = "left" }
+"Alt + Shift + Down" = { join_window = "down" }
+"Alt + Shift + Up" = { join_window = "up" }
+"Alt + Shift + Right" = { join_window = "right" }
+
+# Layout toggles
+# alt-slash = toggle between horizontal/vertical (was 'layout tiles horizontal vertical')
+"Alt + Slash" = "toggle_orientation"
+# alt-comma = toggle stack/accordion (was 'layout accordion horizontal vertical')
+"Alt + Comma" = "toggle_stack"
+
+# Resize (alt-minus / alt-equal)
+"Alt + Minus" = "resize_window_shrink"
+"Alt + Equal" = "resize_window_grow"
+
+# Switch workspaces (AeroSpace 1-9 -> Rift 0-8)
+"Alt + 1" = { switch_to_workspace = 0 }
+"Alt + 2" = { switch_to_workspace = 1 }
+"Alt + 3" = { switch_to_workspace = 2 }
+"Alt + 4" = { switch_to_workspace = 3 }
+"Alt + 5" = { switch_to_workspace = 4 }
+# Workspaces 6-0 switch + focus right (matching AeroSpace behavior)
+"Alt + 6" = { exec = ["/bin/bash", "-c", "rift-cli execute workspace switch 5 && rift-cli execute window focus right"] }
+"Alt + 7" = { exec = ["/bin/bash", "-c", "rift-cli execute workspace switch 6 && rift-cli execute window focus right"] }
+"Alt + 8" = { exec = ["/bin/bash", "-c", "rift-cli execute workspace switch 7 && rift-cli execute window focus right"] }
+"Alt + 9" = { exec = ["/bin/bash", "-c", "rift-cli execute workspace switch 8 && rift-cli execute window focus right"] }
+"Alt + 0" = { exec = ["/bin/bash", "-c", "rift-cli execute workspace switch 9 && rift-cli execute window focus right"] }
+
+
+"Alt + Y" = { exec = ["/bin/bash", "-c", "rift-cli execute workspace switch 5 && rift-cli execute window focus right"] }
+"Alt + U" = { exec = ["/bin/bash", "-c", "rift-cli execute workspace switch 6 && rift-cli execute window focus right"] }
+"Alt + I" = { exec = ["/bin/bash", "-c", "rift-cli execute workspace switch 7 && rift-cli execute window focus right"] }
+"Alt + O" = { exec = ["/bin/bash", "-c", "rift-cli execute workspace switch 8 && rift-cli execute window focus right"] }
+"Alt + P" = { exec = ["/bin/bash", "-c", "rift-cli execute workspace switch 9 && rift-cli execute window focus right"] }
+
+# "Alt + Y" = { switch_to_workspace = 30 }
+# "Alt + U" = { switch_to_workspace = 26 }
+# "Alt + I" = { switch_to_workspace = 17 }
+# "Alt + O" = { switch_to_workspace = 20 }
+# "Alt + P" = { switch_to_workspace = 21 }
+
+# Letter workspaces (A=10, B=11, ... G=16, I=17, M=18, ... Z=31)
+"Alt + A" = { switch_to_workspace = 10 }
+"Alt + B" = { switch_to_workspace = 11 }
+"Alt + C" = { switch_to_workspace = 12 }
+"Alt + D" = { switch_to_workspace = 13 }
+"Alt + E" = { switch_to_workspace = 14 }
+"Alt + F" = { switch_to_workspace = 15 }
+"Alt + G" = { switch_to_workspace = 16 }
+"Alt + M" = { switch_to_workspace = 18 }
+"Alt + N" = { switch_to_workspace = 19 }
+"Alt + Q" = { switch_to_workspace = 22 }
+"Alt + R" = { switch_to_workspace = 23 }
+"Alt + S" = { switch_to_workspace = 24 }
+"Alt + T" = { switch_to_workspace = 25 }
+"Alt + V" = { switch_to_workspace = 27 }
+"Alt + W" = { switch_to_workspace = 28 }
+"Alt + X" = { switch_to_workspace = 29 }
+"Alt + Z" = { switch_to_workspace = 31 }
+
+# Move window to workspace (alt-shift-1 through alt-shift-9 -> Rift 0-8)
+"comb1 + 1" = { move_window_to_workspace = 0 }
+"comb1 + 2" = { move_window_to_workspace = 1 }
+"comb1 + 3" = { move_window_to_workspace = 2 }
+"comb1 + 4" = { move_window_to_workspace = 3 }
+"comb1 + 5" = { move_window_to_workspace = 4 }
+"comb1 + 6" = { move_window_to_workspace = 5 }
+"comb1 + 7" = { move_window_to_workspace = 6 }
+"comb1 + 8" = { move_window_to_workspace = 7 }
+"comb1 + 9" = { move_window_to_workspace = 8 }
+"comb1 + 0" = { move_window_to_workspace = 9 }
+
+# Move window to letter workspaces
+"comb1 + A" = { move_window_to_workspace = 10 }
+"comb1 + B" = { move_window_to_workspace = 11 }
+"comb1 + C" = { move_window_to_workspace = 12 }
+"comb1 + D" = { move_window_to_workspace = 13 }
+"comb1 + E" = { move_window_to_workspace = 14 }
+"comb1 + F" = { move_window_to_workspace = 15 }
+"comb1 + G" = { move_window_to_workspace = 16 }
+"comb1 + M" = { move_window_to_workspace = 18 }
+"comb1 + N" = { move_window_to_workspace = 19 }
+"comb1 + Q" = { move_window_to_workspace = 22 }
+"comb1 + R" = { move_window_to_workspace = 23 }
+"comb1 + S" = { move_window_to_workspace = 24 }
+"comb1 + T" = { move_window_to_workspace = 25 }
+"comb1 + V" = { move_window_to_workspace = 27 }
+"comb1 + W" = { move_window_to_workspace = 28 }
+"comb1 + X" = { move_window_to_workspace = 29 }
+"comb1 + Z" = { move_window_to_workspace = 31 }
+
+
+"comb1 + Y" = { move_window_to_workspace = 5 }
+"comb1 + U" = { move_window_to_workspace = 6 }
+"comb1 + I" = { move_window_to_workspace = 7 }
+"comb1 + O" = { move_window_to_workspace = 8 }
+"comb1 + P" = { move_window_to_workspace = 9 }
+
+# "comb1 + Y" = { move_window_to_workspace = 30 }
+# "comb1 + U" = { move_window_to_workspace = 26 }
+# "comb1 + I" = { move_window_to_workspace = 17 }
+# "comb1 + O" = { move_window_to_workspace = 20 }
+# "comb1 + P" = { move_window_to_workspace = 21 }
+
+# Back and forth (alt-tab)
+"Alt + Tab" = "switch_to_last_workspace"
+
+# Move window to next display (was move-workspace-to-monitor in AeroSpace)
+"Alt + Shift + Tab" = { move_window_to_display = { selector = "right" } }
+
+# Mission control
+"Alt + Ctrl + M" = "show_mission_control_all"
+"Alt + Ctrl + Shift + M" = "show_mission_control_current"
+
+# Save state and exit
+"Alt + Ctrl + Q" = { exec = ["/bin/bash", "-c", "$HOME/.config/rift/save-state.sh && rift-cli execute save-and-exit"] }
+# Restore state
+"Alt + Ctrl + R" = { exec = ["/bin/bash", "-c", "$HOME/.config/rift/restore-state.sh"] }
+
+# Debug
+"Alt + Shift + D" = "debug"

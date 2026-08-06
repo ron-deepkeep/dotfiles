@@ -6,7 +6,9 @@ Exfiltration
 Inpaint
 Inpainter
 Inpainting
+MLSQL
 Neotree
+Normalise
 Rony
 Serper
 Stringafy
@@ -21,7 +23,9 @@ deepkeep
 embedder
 everart
 gdrive
+getfixturevalue
 gliner
+guardbench
 huggingface
 huggingface_hub
 inpainters
@@ -34,12 +38,15 @@ kwargs
 llms
 modelcontextprotocol
 ndarray
+normalize
 nvim
 osher
 preds
+punkt
 remediations
 sandboxing
 substring
 text_embedder_name
+vectorizer
 whitebox
 yossi

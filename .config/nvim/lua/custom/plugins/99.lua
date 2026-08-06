@@ -1,6 +1,6 @@
 return {
   'Soyuz0/99',
-  branch = 'add-python-support',
+  branch = 'refactor-language-prompts',
   config = function()
     local _99 = require '99'
 
